@@ -1,16 +1,36 @@
 version: 2.1
+
 orbs:
   node: circleci/node@3.0.0
+
+commands:
+  setup-node-and-yarn-install-with-cache:
+    steps:
+      - node/install:
+          install-yarn: true
+          node-version: 14.8.0
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: yarn.lock
+
 jobs:
-  build-and-test:
+  lint-and-test:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/install-packages
+      - setup-node-and-yarn-install-with-cache
+      #      - run:
+      #          name: Lint
+      #          command: npm run lint
+      #      - run:
+      #          name: Check types
+      #          command: npm run build
       - run:
+          name: Run tests
           command: npm run test
+
 workflows:
-  build-and-test:
+  run-ci:
     jobs:
-      - build-and-test
+      - lint-and-test
