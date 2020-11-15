@@ -22,6 +22,10 @@ export class BoardService {
     private readonly boardRepository: Repository<Board>,
   ) {}
 
+  test(): number {
+    return 1;
+  }
+
   async getBoardList({ after, first, keyword, category }: GetBoardListFilter) {
     try {
       let limit = 2;
@@ -60,7 +64,7 @@ export class BoardService {
       } else {
         const hasNextPage = boardList.length > limit;
         boardList = hasNextPage ? boardList.slice(0, -1) : boardList;
-        const edges = boardList.map(board => ({
+        const edges = boardList.map((board) => ({
           node: board,
           cursor: board.id,
         }));

@@ -13,8 +13,8 @@
     "incremental": true
   },
   "include": [
-    ".eslintrc.js",
-    "./src/**/*"
+    ".eslintrc.js"
+//    "./src/**/*"
   ],
   "exclude": [
     "node_modules"

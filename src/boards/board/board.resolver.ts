@@ -1,6 +1,17 @@
-import { Args, Context, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { CreateBoardInput } from './dtos/create-board.dto';
-import { GetBoardListFilter, GetBoardListOutput } from './dtos/get-board-list.dto';
+import {
+  GetBoardListFilter,
+  GetBoardListOutput,
+} from './dtos/get-board-list.dto';
 import { UseGuards } from '@nestjs/common';
 import { CurrentUser } from '../../users/auth/current-user.decorator';
 import { User } from '../../users/auth/entities/user.entitiy';
@@ -19,13 +30,12 @@ import { Public } from '../../common/decorators/public.decorator';
 @UseGuards(ApiGuard)
 @Resolver(() => Board)
 export class BoardResolver {
-  constructor(private readonly boardService: BoardService) {
-  }
+  constructor(private readonly boardService: BoardService) {}
 
   @Public()
   @Query(() => GetBoardListOutput)
   getBoardList(
-    @Args() getBoardListFilter: GetBoardListFilter,
+    @Args({ nullable: true }) getBoardListFilter: GetBoardListFilter,
   ): Promise<GetBoardListOutput> {
     console.log(getBoardListFilter.category === 0);
     return this.boardService.getBoardList(getBoardListFilter);
