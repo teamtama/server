@@ -1,0 +1,343 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Board {
+  category: BoardCategory!
+  comments: [BoardComment!]!
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  imageUrl: String
+  likes: [BoardLike!]!
+  thumbnail: String
+  title: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+enum BoardCategory {
+  ALL
+  FQ
+  FREE
+  JOB
+  TRADE
+}
+
+type BoardComment {
+  board: Board!
+  boardId: String!
+  body: String!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type BoardEdge {
+  cursor: String!
+  node: Board!
+}
+
+type BoardLike {
+  board: Board!
+  boardId: String!
+  createdAt: DateTime!
+  id: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type BoardPageInfo {
+  endCursor: String
+  hasNextPage: Boolean
+  startCursor: String
+}
+
+input CreateBoardCommentInput {
+  boardId: String!
+  body: String!
+}
+
+input CreateBoardInput {
+  category: BoardCategory!
+  description: String!
+  thumbnail: String
+  title: String!
+}
+
+input CreateDetailInput {
+  company: String!
+  experience: Float!
+  introduce: String!
+  position: String!
+  startDate: DateTime!
+  status: Boolean!
+}
+
+input CreateNoticeInput {
+  category: NoticeCategory!
+  description: String!
+  thumbnail: String
+  title: String!
+}
+
+input CreateSkillInput {
+  name: String!
+}
+
+input CreateSnsInput {
+  facebook: String
+  instagram: String
+  kakaotalk: String
+  line: String
+  twitter: String
+}
+
+input CreateUserSkillInput {
+  skillId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Detail {
+  company: String!
+  experience: Float!
+  id: ID!
+  introduce: String!
+  position: String!
+  startDate: DateTime!
+  status: Boolean!
+  user: User!
+  userId: String!
+}
+
+input ForgotEmailInput {
+  username: String!
+}
+
+input ForgotPasswordInput {
+  email: String!
+  password: String!
+}
+
+type GetBoardListOutput {
+  edges: [BoardEdge!]
+  pageInfo: BoardPageInfo
+}
+
+type GetNoticeListOutput {
+  edges: [NoticeEdge!]
+  pageInfo: NoticePageInfo
+}
+
+input GoogleLoginInput {
+  tokenId: String!
+}
+
+input GoogleRegisterInput {
+  tokenId: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginOutput {
+  token: String!
+}
+
+type Mutation {
+  createBoard(input: CreateBoardInput!): Board!
+  createBoardComment(input: CreateBoardCommentInput!): BoardComment!
+  createDetail(input: CreateDetailInput!): String!
+  createNotice(input: CreateNoticeInput!): Notice!
+  createSkill(input: CreateSkillInput!): String!
+  createSns(input: CreateSnsInput!): String!
+  createUserSkill(input: CreateUserSkillInput!): String!
+  deleteBoard(boardId: String!): String!
+  deleteNotice(noticeId: String!): Notice!
+  deleteUserSkill(skillId: String!): String!
+  forgotEmail(input: ForgotEmailInput!): User!
+  forgotPassword(input: ForgotPasswordInput!): String!
+  googleLogin(input: GoogleLoginInput!): User!
+  googleRegister(input: GoogleRegisterInput!): User!
+  like(boardId: String!): String!
+  localLogin(input: LoginInput!): User!
+  localLogout: String!
+  login(input: LoginInput!): LoginOutput!
+  register(input: RegisterInput!): User!
+  resetPassword(input: ResetPasswordInput!): User!
+  subscribe(targetUserId: String!): UserSubscription!
+  unlike(boardId: String!): String!
+  unsubscribe(targetUserId: String!): String!
+  updateBoard(input: UpdateBoardInput!): Board!
+  updateBoardComment(input: UpdateBoardCommentInput!): BoardComment!
+  updateDetail(input: UpdateDetailInput!): String!
+  updateNotice(input: UpdateNoticeInput!): Notice!
+  updateSns(input: UpdateSnsInput!): String!
+  updateUser(input: UpdateUserInput!): String!
+  uploadNoticeImage(file: Upload!, noticeId: String!): String!
+}
+
+type Notice {
+  category: NoticeCategory!
+  createdAt: DateTime!
+  description: String!
+  id: String!
+  thumbnail: String
+  title: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+enum NoticeCategory {
+  EVENT
+  NOTICE
+}
+
+type NoticeEdge {
+  cursor: String!
+  node: Notice!
+}
+
+type NoticePageInfo {
+  endCursor: String
+  hasNextPage: Boolean
+  startCursor: String
+}
+
+type Query {
+  findUser(userId: String!): User!
+  getBoard(boardId: String!): Board!
+  getBoardList(after: String, category: BoardCategory, first: String, keyword: String): GetBoardListOutput!
+  getNotice(noticeId: String!): Notice!
+  getNoticeList(after: String, category: NoticeCategory = NOTICE, first: String, keyword: String): GetNoticeListOutput!
+  getSkillList: [Skill!]!
+  me: User!
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+  role: UserRole = Client
+  username: String!
+}
+
+input ResetPasswordInput {
+  confirmCode: Float
+  password: String!
+}
+
+type Skill {
+  id: ID!
+  name: String!
+  users: [UserSkill!]!
+}
+
+type Sns {
+  facebook: String
+  id: ID!
+  instagram: String
+  kakaotalk: String
+  line: String
+  twitter: String
+  user: User!
+  userId: String!
+}
+
+input UpdateBoardCommentInput {
+  boardId: String
+  body: String
+  commentId: String!
+}
+
+input UpdateBoardInput {
+  boardId: String!
+  category: BoardCategory
+  description: String
+  thumbnail: String
+  title: String
+}
+
+input UpdateDetailInput {
+  company: String
+  experience: Float
+  introduce: String
+  position: String
+  startDate: DateTime
+  status: Boolean
+}
+
+input UpdateNoticeInput {
+  category: NoticeCategory
+  description: String
+  noticeId: String!
+  thumbnail: String
+  title: String
+}
+
+input UpdateSnsInput {
+  facebook: String
+  instagram: String
+  kakaotalk: String
+  line: String
+  twitter: String
+}
+
+input UpdateUserInput {
+  avatar: String!
+  email: String
+  password: String
+  role: UserRole = Client
+  username: String
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  avatar: String
+  confirmCode: Float
+  createdAt: DateTime!
+  detail: Detail
+  email: String!
+  id: String!
+  role: UserRole!
+  skills: [UserSkill!]!
+  sns: Sns
+  subscribers: [UserSubscription!]
+  subscriptions: [UserSubscription!]
+  updatedAt: DateTime!
+  username: String!
+}
+
+enum UserRole {
+  Admin
+  Client
+}
+
+type UserSkill {
+  skill: Skill!
+  skillId: String!
+  user: User!
+  userId: String!
+}
+
+type UserSubscription {
+  createdAt: DateTime!
+  id: ID!
+  subscribedTo: User!
+  subscribedToId: String!
+  subscriber: User!
+  subscriberId: String!
+  updatedAt: DateTime!
+}

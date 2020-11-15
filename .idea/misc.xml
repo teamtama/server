@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExtraIconsSettingsProject">
+    <option name="overrideIDESettings" value="true" />
+    <option name="disabledModelIds">
+      <list>
+        <option value="angular_component" />
+        <option value="angular_directive" />
+        <option value="angular_guard" />
+        <option value="angular_html" />
+        <option value="angular_module" />
+        <option value="angular_pipe" />
+        <option value="angular_resolver" />
+        <option value="angular_service" />
+        <option value="angular_spec" />
+        <option value="angular_json" />
+        <option value="angular_component_generic" />
+        <option value="angular_directive_generic" />
+        <option value="angular_guard_generic" />
+        <option value="angular_module_generic" />
+        <option value="angular_pipe_generic" />
+        <option value="angular_resolver_generic" />
+        <option value="angular_service_generic" />
+        <option value="angular_spec_generic" />
+      </list>
+    </option>
+    <option name="ignoredPattern" value="" />
+  </component>
+</project>
