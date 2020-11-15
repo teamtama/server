@@ -14,17 +14,17 @@ commands:
           cache-key: yarn.lock
 
 jobs:
-  build-and-test:
+  lint-and-test:
     executor:
       name: node/default
     steps:
       - checkout
       - setup-node-and-yarn-install-with-cache
       - run:
-          name: Test
+          name: Run tests
           command: npm run test
 
 workflows:
   run-ci:
     jobs:
-      - build-and-test
+      - lint-and-test
