@@ -10,7 +10,14 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
-    "resolveJsonModule": true
-  }
+    "incremental": true
+  },
+  "include": [
+    ".eslintrc.js",
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false
 }

@@ -35,10 +35,11 @@ import { UserSkillLoader } from './loaders/user-skill.loader';
 import { UserSkillModule } from './users/user-skill/user-skill.module';
 import { SkillsLoader } from './loaders/skills.loader';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: process.env.NODE_ENV === 'dev' ? '../.env' : '../.env.test',
+      envFilePath: process.env.NODE_ENV === 'dev' ? '.env' : '.env.test',
       ignoreEnvFile: process.env.NODE_ENV === 'prod',
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().valid('dev', 'prod', 'test'),
